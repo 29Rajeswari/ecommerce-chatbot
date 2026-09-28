@@ -1,0 +1,31 @@
+# NVIDIA NeMo Guardrails configuration.
+# This project currently uses a rule/database chatbot, so we use
+# model-free regex rails rather than requiring a proprietary LLM API.
+
+rails:
+  config:
+    regex_detection:
+      input:
+        case_insensitive: true
+        patterns:
+          - "\\b(ignore|forget)\\s+(all|any|the)\\s+(previous|prior|above)\\s+(instructions|rules)\\b"
+          - "\\b(bypass|disable|circumvent)\\s+(the\\s+)?(guardrail|security|authorization)\\b"
+          - "\\b(show|give|print|reveal)\\s+(the\\s+)?(system prompt|system instructions|developer instructions)\\b"
+          - "\\b(drop|delete|truncate)\\s+table\\b"
+          - "\\bunion\\s+select\\b"
+          - "(--|/\\*)"
+          - "\\b(password|secret|api[_-]?key|access[_-]?token)\\b"
+          - "\\b\\d{4}[- ]?\\d{4}[- ]?\\d{4}[- ]?\\d{4}\\b"
+          - "\\b\\d{3}-\\d{2}-\\d{4}\\b"
+      output:
+        case_insensitive: true
+        patterns:
+          - "\\b(password|secret|api[_-]?key|access[_-]?token)\\b"
+          - "\\b\\d{4}[- ]?\\d{4}[- ]?\\d{4}[- ]?\\d{4}\\b"
+
+  input:
+    flows:
+      - regex check input
+  output:
+    flows:
+      - regex check output
