@@ -139,21 +139,6 @@ python main.py
 
 On startup the app inserts demo data (only if it is not already present) and prompts you to log in.
 
-### Demo accounts
-
-| User | Email | Password | Orders |
-|---|---|---|---|
-| Alice Johnson | `alice@example.com` | `Alice@123` | `ORD-10001` |
-| Bob Martinez | `bob@example.com` | `Bob@123` | `ORD-10002` |
-
-> These credentials are for local demos only. Do not reuse them anywhere real.
-
-Seeded products: `PHN-X100`, `HDPH-200`, `LAP-PRO14`, `TAB-S10`, `WATCH-X1`.
-
----
-
-## Usage
-
 ### Commands
 
 | You type | The bot does |
